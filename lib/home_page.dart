@@ -4,8 +4,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Home page"),
+      body: Container(
+        child: FractionallySizedBox(
+          widthFactor: 1,
+          heightFactor: 0.45,
+          child: Container(
+            color: Colors.black54,
+          ),
+        ),
       ),
     );
   }
