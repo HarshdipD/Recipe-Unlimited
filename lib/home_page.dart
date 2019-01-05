@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                                     onPressed: ()
                                         {
                                           print("abey!");
-                                          Navigator.push(context);
+                                          //Navigator.push(context);
                                         },
                                   ),
                                   alignment: Alignment(1.0, -1.0),
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: CircleAvatar(
-                            radius: 40.0,
+                            radius: 45.0,
                             backgroundImage: AssetImage('images/image1.jpeg'),
                           ),
                         ),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
             ),
             Card(
               color: Colors.deepOrange,
-              child: Text("trhgfvd"),
+              //child: Text("trhgfvd"),
             )
           ],
         ),
