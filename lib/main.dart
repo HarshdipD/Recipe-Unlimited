@@ -27,9 +27,9 @@ class _myStateState extends State<myState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //APP BAR
       /*appBar: AppBar(
         title: Text("Recipe App"),
+        backgroundColor: Colors.black54,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.person),
@@ -37,8 +37,7 @@ class _myStateState extends State<myState> {
         ],
       ),*/
 
-
-        /*endDrawer: Drawer(
+      /*endDrawer: Drawer(
           elevation: 2.0,
           child: ListView(
             padding: EdgeInsets.zero,
@@ -73,27 +72,27 @@ class _myStateState extends State<myState> {
       body: Center(
         child: _bottomBarOptions.elementAt(_selectedIndex),
       ),
-        //BOTTOM NAVIGATION BAR
+      //BOTTOM NAVIGATION BAR
 
-        bottomNavigationBar: new BottomNavigationBar(
-            items: [
-              new BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text("Home"),
-              ),
-              new BottomNavigationBarItem(
-                icon: Icon(Icons.library_books),
-                title: Text("My Recipes"),
-              ),
-              new BottomNavigationBarItem(
-                icon: Icon(Icons.local_grocery_store),
-                title: Text("My Grocery List"),
-              ),
+      bottomNavigationBar: new BottomNavigationBar(
+        items: [
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text("Home"),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            title: Text("My Recipes"),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.local_grocery_store),
+            title: Text("My Grocery List"),
+          ),
         ],
-          currentIndex: _selectedIndex,
-          fixedColor: Colors.deepOrange,
-          onTap: _onItemTapped,
-        ),
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.deepOrange,
+        onTap: _onItemTapped,
+      ),
     );
   }
 
@@ -105,5 +104,14 @@ class _myStateState extends State<myState> {
       _selectedIndex = index;
     });
   }
-}
 
+  double myWidget() {
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double _width = width * 0.65;
+    return _width;
+  }
+
+}
