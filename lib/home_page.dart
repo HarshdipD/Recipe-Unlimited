@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
           children: [
             SizedBox(
               width: 1000.0,
-              height: 300.0,
+              height: 220.0,
               child: Container(
                   color: Colors.black54,
                   child: SafeArea(
@@ -48,10 +48,17 @@ class HomePage extends StatelessWidget {
                             Text("Hey User",
                             style: TextStyle(color: Colors.white, fontSize: 17.0, fontFamily: "packages/cool_fonts/Roboto"),),
                         ),
-
                       ],
                     ),
                   ),
+              ),
+            ),
+            SizedBox(
+              height: 80.0,
+              width: 1000.0,
+              child: Container(
+                color: Colors.black54,
+                //child: TextField(),
               ),
             ),
             Card(
