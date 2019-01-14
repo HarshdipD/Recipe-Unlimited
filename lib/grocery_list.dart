@@ -5,7 +5,8 @@ class GroceryList extends StatefulWidget {
   _GroceryListState createState() => _GroceryListState();
 }
 
-class _GroceryListState extends State<GroceryList> {
+class _GroceryListState extends State<GroceryList> with AutomaticKeepAliveClientMixin{
+
 
   String item_name = "";
   String item_qtty = "";
@@ -19,11 +20,15 @@ class _GroceryListState extends State<GroceryList> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
+            tooltip: 'Add an item',
             onPressed:(){
               showDialog(
                   context: context,
@@ -125,17 +130,17 @@ class _GroceryListState extends State<GroceryList> {
                             setState(() {
                               if(item_name != "" && item_qtty == ""){
                                 //Just add the item name, and put quantity as ""
-                                grocery_list.add(item_name);
+                                grocery_list.add(item_name);  //Add the name
                                 _displaySnackBarONE(context);
 
                               }
                               else if(item_name != "" && item_qtty != ""){
                                 //Add item with its quantity
                                 _displaySnackBarTWO(context);
+                                grocery_list.add(item_name);  //Add the item name
                               }
-                              else if(item_name == "" && item_qtty != ""){
-                                //Do nothing bc there's no name, just quantity
-                                //Maybe say nothing added?
+                              else if(item_name == ""){
+                                //Do nothing bc there's no name, and it quantity doesn't matter anymore
                                 _displaySnackBarTHREE(context);
                               }
                               item_name = "";
@@ -162,6 +167,11 @@ class _GroceryListState extends State<GroceryList> {
         )
     );
   }
+
+  /************
+  * FUNCTIONS *
+  ************/
+
   _displaySnackBarONE(BuildContext context) {
     final snackBar = SnackBar(
         content: Text('Item without quantity added!'),
