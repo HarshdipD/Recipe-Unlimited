@@ -131,7 +131,7 @@ class _GroceryListState extends State<GroceryList> with AutomaticKeepAliveClient
                               if(item_name != "" && item_qtty == ""){
                                 //Just add the item name, and put quantity as ""
                                 grocery_list.add(item_name);  //Add the name
-                                _displaySnackBarONE(context);
+                                _displaySnackBarONE(context, item_name);
 
                               }
                               else if(item_name != "" && item_qtty != ""){
@@ -157,11 +157,39 @@ class _GroceryListState extends State<GroceryList> with AutomaticKeepAliveClient
         body: ListView.builder(
           itemCount: grocery_list.length,
           itemBuilder: (BuildContext context, int index){
+            final String item = grocery_list[index];
             return Dismissible(
               key: Key(index.toString()),
               child: ListTile(
                 title: Text(grocery_list[index]),
               ),
+              background: Container(
+                  color: Colors.green,
+                  child: Icon(Icons.check),
+                  alignment: Alignment.centerLeft,
+              ),
+              secondaryBackground: Container(
+                color: Colors.red,
+                child: Icon(Icons.delete),
+                alignment: Alignment.centerRight,
+              ),
+              onDismissed: (DismissDirection dir){
+                setState(() {
+                  grocery_list.removeAt(index);
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(dir == DismissDirection.startToEnd ? 'abc' : 'cba'),
+                      action: SnackBarAction(
+                          label: 'UNDO',
+                          onPressed: () {
+                            setState(() {
+                              this.grocery_list.insert(index, item_name);
+                            });
+                          }),
+                    )
+                  );
+                });
+              },
             );
           },
         )
@@ -172,13 +200,16 @@ class _GroceryListState extends State<GroceryList> with AutomaticKeepAliveClient
   * FUNCTIONS *
   ************/
 
-  _displaySnackBarONE(BuildContext context) {
+  _displaySnackBarONE(BuildContext context, index) {
     final snackBar = SnackBar(
         content: Text('Item without quantity added!'),
         action: SnackBarAction(label: 'Undo',
             onPressed: (){
             //Undo the add thing
             //TO DO
+              setState(() {
+                this.grocery_list.insert(index, grocery_list);
+              });
             }
             ),
     );
